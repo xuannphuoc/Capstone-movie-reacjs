@@ -6,6 +6,8 @@ import AboutPage from "./pages/HomeTemplates/AboutPage";
 import ListMoviePage from "./pages/HomeTemplates/ListMoviePage";
 import DashboardPage from "./pages/AdminTemplates/DashboardPage";
 import AddUserPage from "./pages/AdminTemplates/AddUserPage";
+import DetailPage from "./pages/HomeTemplates/DetailPage";
+import AuthenPage from "./pages/AdminTemplates/AuthPage";
 
 function App() {
   return (
@@ -16,12 +18,16 @@ function App() {
           <Route path="" element={<HomePage />}></Route>
           <Route path="about" element={<AboutPage />}></Route>
           <Route path="list-movie" element={<ListMoviePage />}></Route>
+          <Route path="detail/:id" element={<DetailPage />}></Route>
         </Route>
+
         {/* AdminTemplate */}
         <Route path="admin" element={<AdminTemplate />}>
           <Route path="dashboard" element={<DashboardPage />}></Route>
           <Route path="add-user" element={<AddUserPage />}></Route>
         </Route>
+
+        <Route path="auth" element={<AuthenPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
