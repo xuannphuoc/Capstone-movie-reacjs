@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { data } from "react-router-dom";
+import api from "../../../services/apiServices";
 
 const adminInfo = localStorage.getItem("ADMIN_INFO")
   ? JSON.parse(localStorage.getItem("ADMIN_INFO"))
@@ -16,15 +17,17 @@ export const authenLogin = createAsyncThunk(
   "authenLogin",
   async (user, { rejectWithValue }) => {
     try {
-      const response = await axios({
-        url: "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-        method: "POST",
-        data: user,
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA4NyIsIkhldEhhblN0cmluZyI6IjIzLzAzLzIwMjYiLCJIZXRIYW5UaW1lIjoiMTc3NDIyNDAwMDAwMCIsIm5iZiI6MTc0NzI2NzIwMCwiZXhwIjoxNzc0Mzk2ODAwfQ.8AWlFkAkN_xwXppJe_FTgiJXS4WlItjxLy5olIf33HY",
-        },
-      });
+      // const response = await axios({
+      //   url: "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      //   method: "POST",
+      //   data: user,
+      //   headers: {
+      //     TokenCybersoft:
+      //       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA4NyIsIkhldEhhblN0cmluZyI6IjIzLzAzLzIwMjYiLCJIZXRIYW5UaW1lIjoiMTc3NDIyNDAwMDAwMCIsIm5iZiI6MTc0NzI2NzIwMCwiZXhwIjoxNzc0Mzk2ODAwfQ.8AWlFkAkN_xwXppJe_FTgiJXS4WlItjxLy5olIf33HY",
+      //   },
+      // });
+
+      const response = await api.post(`QuanLyNguoiDung/DangNhap`, user);
       const authInfo = response.data.content;
 
       // Check permission user

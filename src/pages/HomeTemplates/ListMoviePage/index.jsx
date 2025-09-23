@@ -1,8 +1,8 @@
 import Movie from "./movie";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "./slice";
+import Loader from "@components/Loader";
 
 export default function ListMoviePage() {
   const state = useSelector((state) => state.listMovieReducer);
@@ -19,7 +19,7 @@ export default function ListMoviePage() {
     });
   };
 
-  if (state.loading) return <p>Loading...</p>;
+  if (state.loading) return <Loader />;
 
   return (
     <div className="container mx-auto grid grid-cols-4 gap-10">
